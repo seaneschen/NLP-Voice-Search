@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NLM Powered Search Processor</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Welcome to the NLM Powered Search Processor</h1>
+    
+    <!-- Text Search Form -->
+    <form id="searchForm" action="/search" method="post">
+        <label for="query">Enter your search query:</label>
+        <input type="text" id="query" name="query" placeholder="Type something...">
+        <button type="submit">Search</button>
+    </form>
+    
+    <!-- Voice Search Button -->
+    <button id="voiceSearchBtn">Voice Search</button>
+    
+    <!-- Search Results Container -->
+    <div id="searchResults"></div>
+    
+    <!-- Scripts for handling Voice Search and displaying results -->
+    <script>
+        $(document).ready(function(){
+            // Handle the submission of the text search form
+            $('#searchForm').on('submit', function(e){
+                e.preventDefault(); // Prevent the default form submission
+                $.ajax({
+                    url: '/search', // This should be the endpoint in your Flask app for text search
+                    type: 'post',
+                    data: $(this).serialize(),
+                    success: function(data) {
+                        // Display the search results
+                        $('#searchResults').html(data);
+                    }
+                });
+            });
+
+            // Handle the voice search button click
+            $('#voiceSearchBtn').on('click', function(){
+                // Here you would implement the functionality to capture voice
+                // and send it to the server for processing.
+                // This might involve using the Web Speech API for voice capture
+                // and a separate endpoint in your Flask app to handle voice search.
+            });
+        });
+    </script>
+</body>
+</html>

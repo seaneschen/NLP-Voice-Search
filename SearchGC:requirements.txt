@@ -1,0 +1,5 @@
+Flask>=2.0
+Jinja2>=3.0
+openai==0.2.6
+cryptography==3.4.7
+# Add other necessary packages and their versions
